@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cabinet Avocat - Servicii Juridice Profesionale</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: #fafafa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #334155a6 80%, transparent);
+            color: white;
+            padding: 160px 40px 160px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -5%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            animation: pulse 6s ease-in-out infinite reverse;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1) translate(0, 0);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1) translate(-20px, 20px);
+                opacity: 0.8;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-accent {
+            display: inline-block;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #818cf8;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 30px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+        }
+
+
+        /* Specializations Section */
+        .specializations {
+            padding: 120px 40px;
+            background: linear-gradient(to bottom, #fafafa 0%, #ffffff 50%, #fafafa 100%);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: #0f172a;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.15rem;
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto 80px;
+            font-weight: 300;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 35px;
+            margin-top: 60px;
+        }
+
+        .card {
+            background: white;
+            padding: 50px 40px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid #f1f5f9;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, #6366f1 0%, #8b5cf6 100%);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.12);
+            border-color: #e0e7ff;
+        }
+
+        .card:hover::before {
+            transform: scaleY(1);
+            transform-origin: top;
+        }
+
+        .card:hover::after {
+            transform: scale(6);
+        }
+
+        .card:hover .card-number {
+            color: #6366f1;
+        }
+
+        .card-number {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 5rem;
+            font-weight: 800;
+            color: #f1f5f9;
+            transition: all 0.4s ease;
+            line-height: 1;
+            z-index: 1;
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #0f172a;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card p {
+            color: #64748b;
+            line-height: 1.8;
+            font-weight: 400;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 120px 40px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+        }
+
+        .contact-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact .section-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 70px;
+            margin-bottom: 60px;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 450px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: grayscale(20%) contrast(1.1);
+        }
+
+        .contact-item {
+            padding: 45px 35px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .contact-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .contact-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: white;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .contact-item p {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+        }
+
+        .contact-item a {
+            color: #818cf8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #a5b4fc;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0f1a;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 40px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+                letter-spacing: -1px;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2.4rem;
+            }
+
+            .container {
+                padding: 0 25px;
+            }
+
+            .hero, .specializations, .contact {
+                padding-left: 25px;
+                padding-right: 25px;
+            }
+
+            .card-number {
+                font-size: 3.5rem;
+                top: 15px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-accent">Expertiză Juridică</div>
+            <h1>CABINET DE AVOCAT</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <a href="#contact" class="cta-button">Programează consultație</a>
+        </div>
+    </section>
+
+    <!-- Specializations Section -->
+    <section class="specializations">
+        <div class="container">
+            <h2 class="section-title">Domenii de practică</h2>
+            <p class="section-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-number">01</div>
+                    <h3>Drept Civil</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number"></div>
+                    <h3>Drept Comercial</h3>
+                    <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit voluptate.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number"></div>
+                    <h3>Drept Imobiliar</h3>
+                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number"></div>
+                    <h3>Dreptul Muncii</h3>
+                    <p>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor reprehenderit.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number"></div>
+                    <h3>Drept Penal</h3>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Sed do eiusmod tempor incididunt ut labore dolore.</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-number"></div>
+                    <h3>Dreptul Familiei</h3>
+                    <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title">Contact</h2>
+                <p class="section-subtitle">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore.
+                </p>
+
+                 <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d43578.37641478683!2d23.55198967910156!3d46.77012470000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47490e9b77b6fc03%3A0x1d4c3f48d0e67c79!2sCluj-Napoca!5e0!3m2!1sen!2sro!4v1234567890123!5m2!1sen!2sro" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>Telefon</h3>
+                        <p><a href="tel:+40712345678">+40 712 345 678</a></p>
+                    </div>
+
+                    <div class="contact-item">
+                        <h3>Email</h3>
+                        <p><a href="mailto:contact@avocat.ro">contact@avocat.ro</a></p>
+                    </div>
+
+                    <div class="contact-item">
+                        <h3>Adresă</h3>
+                        <p>Strada Exemplu Nr. 123<br>Cluj-Napoca, România</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Cabinet de Avocat. Toate drepturile rezervate.</p>
+        </div>
+    </footer>
+</body>
+</html>
